@@ -10,11 +10,17 @@
 //Declarative
 pipeline{
 //	agent any
-	agent { docker { image '3.8.6-openjdk-18'} }
+	agent { docker { maven '3.6.3'} }
+	environment{
+		dockerHome = tool 'docker'
+		mavenHome = tool 'maven'
+		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+	}
 	stages{
 		stage('Build'){
 			steps {
 					sh 'mvn --version'
+					sh 'docker version'
 					echo 'Building for the testing'
 				}
 			}
