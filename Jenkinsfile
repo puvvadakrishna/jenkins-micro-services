@@ -19,9 +19,9 @@ pipeline{
 	stages{
 		stage('Compile'){
 			steps {
+					sh 'mvn clean compile'
 					sh 'mvn --version'
 					sh 'docker version'
-					sh 'mvn clean compile'
 					echo 'Building for the testing'
 				}
 			}
